@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wombat — Round 5 Sample (5 functions)</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;font-size:14px;background:#f0f2f5;color:#222}
+header{background:#1a1a2e;color:#eee;padding:.75rem 1.5rem}
+header h1{font-size:1rem}
+.hdr-sub{font-size:.78rem;color:#999;margin-top:.2rem}
+main{max-width:960px;margin:0 auto;padding:1.2rem 1rem}
+.entry{background:#fff;border-radius:8px;margin-bottom:1.5rem;box-shadow:0 1px 4px rgba(0,0,0,.1);overflow:clip}
+.entry-header{padding:.7rem 1.1rem;background:#f8f9ff;border-bottom:1px solid #e8e8ef;display:flex;align-items:center;gap:.55rem;flex-wrap:wrap}
+.entry-num{font-size:.7rem;background:#e0e7ff;color:#3730a3;padding:.12rem .4rem;border-radius:3px;font-weight:bold}
+.entry-script{font-family:monospace;font-size:.8rem;color:#666}
+.entry-qname code{font-family:monospace;font-size:.9rem;color:#c00;font-weight:bold}
+.entry-arrow{color:#bbb}
+.entry-proposed strong{font-family:monospace;font-size:.9rem;color:#16a34a}
+.src-block>summary,.callsite-block>summary{padding:.4rem 1.1rem;cursor:pointer;font-size:.76rem;color:#4a9eff;background:#fafbff;border-bottom:1px solid #eee;user-select:none}
+.src-block>summary:hover,.callsite-block>summary:hover{background:#f0f5ff}
+.code-scroll,.cs-scroll{overflow-x:auto}
+.src-pre{padding:.8rem 1.1rem;font-family:'Courier New',monospace;font-size:12px;line-height:1.55;background:#1e1e2e;color:#cdd6f4;white-space:pre;tab-size:4;display:flex;flex-direction:column;min-width:max-content}
+.src-pre span{display:block}
+.callsites-section{border-bottom:1px solid #eee}
+.callsites-header{padding:.45rem 1.1rem;font-size:.78rem;color:#555;background:#fffdf0;border-bottom:1px solid #f0ebe0}
+.callsites-header .cs-count{font-weight:bold;color:#b45309}
+.cs-more{color:#aaa;font-style:italic}
+.callsite-block>summary{background:#fffdf5;border-bottom:1px solid #f0ece0;padding-left:2rem}
+.callsite-block>summary:hover{background:#fff8e8}
+.callsite-block:last-child>summary{border-bottom:none}
+.callsite-block[open]>summary{border-bottom:1px solid #f0ece0}
+.cs-script{font-family:monospace;font-size:.8rem;color:#92400e}
+.cs-line{font-size:.73rem;color:#aaa}
+.cs-pre{padding:.6rem 1.1rem .6rem 2rem;font-family:'Courier New',monospace;font-size:11.5px;line-height:1.5;background:#1a1a26;color:#cdd6f4;white-space:pre;tab-size:4;display:flex;flex-direction:column;min-width:max-content}
+.cs-pre span{display:block}
+.cs-pre .hit-line{background:#3a3000;color:#fde68a;border-left:3px solid #f59e0b;padding-left:4px;margin-left:-7px}
+.ln{color:#555;display:inline-block;width:3ch;margin-right:.5rem;text-align:right;user-select:none;font-size:10px}
+.hit-line .ln{color:#d97706}
+.no-sites{padding:.6rem 1.1rem;font-size:.78rem;color:#999;font-style:italic}
+.table-scroll{overflow-x:auto}
+.renames-table{width:100%;border-collapse:collapse;min-width:400px}
+.renames-table th{font-size:.7rem;color:#888;font-weight:600;padding:.38rem .9rem;text-align:left;border-bottom:1px solid #f0f0f0;background:#fafafa}
+.renames-table td{padding:.38rem .9rem;border-bottom:1px solid #f5f5f5;vertical-align:middle}
+.renames-table tr:last-child td{border-bottom:none}
+.row-fn{background:#fefff5}
+.col-q code{font-family:monospace;font-size:.82rem;color:#c00}
+.col-role{font-size:.72rem;color:#888}
+.col-arrow{color:#bbb;width:14px}
+.col-proposed code{font-family:monospace;font-size:.83rem;color:#166534}
+</style></head>
+<body>
+<header>
+  <h1>Wombat — Round 5 Sample Preview</h1>
+  <div class="hdr-sub">5 of 54 renamed functions · source shown, definition excluded from call-site context</div>
+</header>
+<main><section class="entry" id="entry-0">
+  <div class="entry-header">
+    <span class="entry-num">#1</span>
+    <span class="entry-script">aprotectbase.m</span>
+    <span class="entry-qname"><code>Q4IW</code></span>
+    <span class="entry-arrow">→</span>
+    <span class="entry-proposed"><strong>apply_area_protection</strong></span>
+  </div>
+  <details class="src-block">
+  <summary>Source</summary>
+  <div class="code-scroll"><pre class="src-pre"><span><span class="ln">   3</span>  function int Q4IW(obj user, loc place) {</span>
+<span><span class="ln">   4</span>  	list Q5HT;</span>
+<span><span class="ln">   5</span>  	int defenseBonus;</span>
+<span><span class="ln">   6</span>  	int Q5NC = 0x00;</span>
+<span><span class="ln">   7</span>  	defenseBonus = (getSkillLevel(user, 0x19) / 0x0A);</span>
+<span><span class="ln">   8</span>  	int Q4NC = 0x06 * getSkillLevel(user, 0x19) / 0x05;</span>
+<span><span class="ln">   9</span>  	getMobsInRange(Q5HT, place, 0x02);</span>
+<span><span class="ln">  10</span>  	for (int x = 0x00; x &lt; numInList(Q5HT); x++) {</span>
+<span><span class="ln">  11</span>  		obj Q5HY = Q5HT[x];</span>
+<span><span class="ln">  12</span>  		if (Q50G(Q5HY)) {</span>
+<span><span class="ln">  13</span>  			if (!(hasScript(Q5HY, &quot;reflctor&quot;))) {</span>
+<span><span class="ln">  14</span>  				if (!(hasScript(Q5HY, &quot;remprtct&quot;))) {</span>
+<span><span class="ln">  15</span>  					doMobAnimation(Q5HY, 0x375A, 0x09, 0x14, 0x00, 0x00);</span>
+<span><span class="ln">  16</span>  					setObjVar(Q5HY, &quot;defenseBonus&quot;, defenseBonus);</span>
+<span><span class="ln">  17</span>  					int Q5BM = getNaturalAC(Q5HY) + defenseBonus;</span>
+<span><span class="ln">  18</span>  					setNaturalAC(Q5HY, Q5BM);</span>
+<span><span class="ln">  19</span>  					attachScript(Q5HY, &quot;remprtct&quot;);</span>
+<span><span class="ln">  20</span>  					int Q527 = Q41J(user, Q5HY, 0x00, this);</span>
+<span><span class="ln">  21</span>  					callback(Q5HY, Q4NC, 0x13);</span>
+<span><span class="ln">  22</span>  					sfx(place, 0x01F7, 0x00);</span>
+<span><span class="ln">  23</span>  					Q5NC = 0x01;</span>
+<span><span class="ln">  24</span>  				}</span>
+<span><span class="ln">  25</span>  			}</span>
+<span><span class="ln">  26</span>  		}</span>
+<span><span class="ln">  27</span>  	}</span>
+<span><span class="ln">  28</span>  	Q5UQ(this);</span>
+<span><span class="ln">  29</span>  	return(Q5NC);</span>
+<span><span class="ln">  30</span>  }</span></pre></div>
+</details>
+  <div class="callsites-section">
+  <div class="callsites-header">Called from <span class="cs-count">1</span> location</div>
+  <details class="callsite-block">
+  <summary><span class="cs-script">aprotect.m</span> <span class="cs-line">line 30</span></summary>
+  <div class="cs-scroll"><pre class="cs-pre"><span><span class="ln">  20</span>  		return(0x01);</span>
+<span><span class="ln">  21</span>  	}</span>
+<span><span class="ln">  22</span>  	if (!isInMap(place)) {</span>
+<span><span class="ln">  23</span>  		return(0x00);</span>
+<span><span class="ln">  24</span>  	}</span>
+<span><span class="ln">  25</span>  	if (canSeeLoc(user, place) == 0x01) {</span>
+<span><span class="ln">  26</span>  		if (!Q5YC(user, this)) {</span>
+<span><span class="ln">  27</span>  			return(0x00);</span>
+<span><span class="ln">  28</span>  		}</span>
+<span><span class="ln">  29</span>  		if (Q4LT(user, place, this)) {</span>
+<span class="hit-line"><span class="ln">  30</span>  			Q4IW(user, place);</span>
+<span><span class="ln">  31</span>  		} else {</span>
+<span><span class="ln">  32</span>  			Q4RD(user);</span>
+<span><span class="ln">  33</span>  		}</span>
+<span><span class="ln">  34</span>  	} else {</span>
+<span><span class="ln">  35</span>  		systemMessage(user, &quot;Target cannot be seen.&quot;);</span>
+<span><span class="ln">  36</span>  	}</span>
+<span><span class="ln">  37</span>  	return(0x00);</span>
+<span><span class="ln">  38</span>  }</span>
+<span><span class="ln">  39</span>  </span>
+<span><span class="ln">  40</span>  trigger creation {</span></pre></div>
+</details>
+</div>
+  <div class="table-scroll"><table class="renames-table">
+    <thead><tr><th>Q-name</th><th>Role</th><th></th><th>Proposed</th></tr></thead>
+    <tbody><tr class="row-fn"><td class="col-q"><code>Q4IW</code></td><td class="col-role">function</td><td class="col-arrow">→</td><td class="col-proposed"><code>apply_area_protection</code></td></tr>
+<tr><td class="col-q"><code>Q5HT</code></td><td class="col-role">local/param</td><td class="col-arrow">→</td><td class="col-proposed"><code>mobs_in_range</code></td></tr>
+<tr><td class="col-q"><code>Q5NC</code></td><td class="col-role">local/param</td><td class="col-arrow">→</td><td class="col-proposed"><code>success</code></td></tr>
+<tr><td class="col-q"><code>Q4NC</code></td><td class="col-role">local/param</td><td class="col-arrow">→</td><td class="col-proposed"><code>duration</code></td></tr>
+<tr><td class="col-q"><code>Q5HY</code></td><td class="col-role">local/param</td><td class="col-arrow">→</td><td class="col-proposed"><code>mob</code></td></tr>
+<tr><td class="col-q"><code>Q5BM</code></td><td class="col-role">local/param</td><td class="col-arrow">→</td><td class="col-proposed"><code>new_ac</code></td></tr>
+<tr><td class="col-q"><code>Q527</code></td><td class="col-role">local/param</td><td class="col-arrow">→</td><td class="col-proposed"><code>not_delta</code></td></tr></tbody>
+  </table></div>
+</section>
+<section class="entry" id="entry-1">
+  <div class="entry-header">
+    <span class="entry-num">#2</span>
+    <span class="entry-script">archcurebase.m</span>
+    <span class="entry-qname"><code>Q4IV</code></span>
+    <span class="entry-arrow">→</span>
+    <span class="entry-proposed"><strong>apply_area_cure</strong></span>
+  </div>
+  <details class="src-block">
+  <summary>Source</summary>
+  <div class="code-scroll"><pre class="src-pre"><span><span class="ln">   3</span>  function int Q4IV(obj user, loc Q5YM, int Q4PO) {</span>
+<span><span class="ln">   4</span>  	list Q5HT;</span>
+<span><span class="ln">   5</span>  	loc Q4VS = getLocation(user);</span>
+<span><span class="ln">   6</span>  	int Q5KQ;</span>
+<span><span class="ln">   7</span>  	int Q5JC;</span>
+<span><span class="ln">   8</span>  	int poison;</span>
+<span><span class="ln">   9</span>  	int Q5NC = 0x00;</span>
+<span><span class="ln">  10</span>  	if (Q4PO != 0x00) {</span>
+<span><span class="ln">  11</span>  		Q5KQ = (Q4PO * 0x4B);</span>
+<span><span class="ln">  12</span>  	} else {</span>
+<span><span class="ln">  13</span>  		Q5KQ = (getSkillLevel(user, 0x19) * 0x4B);</span>
+<span><span class="ln">  14</span>  	}</span>
+<span><span class="ln">  15</span>  	faceHere(user, getDirectionInternal(Q4VS, Q5YM));</span>
+<span><span class="ln">  16</span>  	getMobsInRange(Q5HT, Q5YM, 0x02);</span>
+<span><span class="ln">  17</span>  	obj Q5HY;</span>
+<span><span class="ln">  18</span>  	for (int x = 0x00; x &lt; numInList(Q5HT); x++) {</span>
+<span><span class="ln">  19</span>  		Q5HY = Q5HT[x];</span>
+<span><span class="ln">  20</span>  		poison = getObjVar(Q5HY, &quot;poison_strength&quot;);</span>
+<span><span class="ln">  21</span>  		Q5JC = (poison * 0x06D6);</span>
+<span><span class="ln">  22</span>  		doMobAnimation(Q5HY, 0x373A, 0x0A, 0x0F, 0x00, 0x00);</span>
+<span><span class="ln">  23</span>  		if (Q50G(Q5HY)) {</span>
+<span><span class="ln">  24</span>  			if ((hasScript(Q5HY, &quot;poisoned&quot;)) || (hasObjVar(Q5HY, &quot;poison_strength&quot;))) {</span>
+<span><span class="ln">  25</span>  				if (((0x2710 + (Q5KQ - Q5JC)) / 0x64) &gt; random(0x01, 0x64)) {</span>
+<span><span class="ln">  26</span>  					Q660(Q5HY);</span>
+<span><span class="ln">  27</span>  					int Q527 = Q41J(user, Q5HY, 0x00, this);</span>
+<span><span class="ln">  28</span>  					systemMessage(Q5HY, &quot; &quot; + getName(user) + &quot; has cured you of all poisons!&quot;);</span>
+<span><span class="ln">  29</span>  				} else {</span>
+<span><span class="ln">  30</span>  					systemMessage(Q5HY, &quot; &quot; + getName(user) + &quot; has failed to cure you!&quot;);</span>
+<span><span class="ln">  31</span>  				}</span>
+<span><span class="ln">  32</span>  				Q5NC = 0x01;</span>
+<span><span class="ln">  33</span>  			}</span>
+<span><span class="ln">  34</span>  		}</span>
+<span><span class="ln">  35</span>  	}</span>
+<span><span class="ln">  36</span>  	sfx(Q5YM, 0x01E8, 0x00);</span>
+<span><span class="ln">  37</span>  	Q5UQ(this);</span>
+<span><span class="ln">  38</span>  	return(Q5NC);</span>
+<span><span class="ln">  39</span>  }</span></pre></div>
+</details>
+  <div class="callsites-section">
+  <div class="callsites-header">Called from <span class="cs-count">1</span> location</div>
+  <details class="callsite-block">
+  <summary><span class="cs-script">archcure.m</span> <span class="cs-line">line 30</span></summary>
+  <div class="cs-scroll"><pre class="cs-pre"><span><span class="ln">  20</span>  		return(0x01);</span>
+<span><span class="ln">  21</span>  	}</span>
+<span><span class="ln">  22</span>  	if (!isInMap(place)) {</span>
+<span><span class="ln">  23</span>  		return(0x00);</span>
+<span><span class="ln">  24</span>  	}</span>
+<span><span class="ln">  25</span>  	if (canSeeLoc(user, place) == 0x01) {</span>
+<span><span class="ln">  26</span>  		if (!Q5YC(user, this)) {</span>
+<span><span class="ln">  27</span>  			return(0x00);</span>
+<span><span class="ln">  28</span>  		}</span>
+<span><span class="ln">  29</span>  		if (Q4LT(user, place, this)) {</span>
+<span class="hit-line"><span class="ln">  30</span>  			Q4IV(user, place, 0x00);</span>
+<span><span class="ln">  31</span>  		} else {</span>
+<span><span class="ln">  32</span>  			Q4RD(user);</span>
+<span><span class="ln">  33</span>  		}</span>
+<span><span class="ln">  34</span>  	} else {</span>
+<span><span class="ln">  35</span>  		systemMessage(user, &quot;Target cannot be seen.&quot;);</span>
+<span><span class="ln">  36</span>  	}</span>
+<span><span class="ln">  37</span>  	return(0x00);</span>
+<span><span class="ln">  38</span>  }</span>
+<span><span class="ln">  39</span>  </span>
+<span><span class="ln">  40</span>  trigger creation {</span></pre></div>
+</details>
+</div>
+  <div class="table-scroll"><table class="renames-table">
+    <thead><tr><th>Q-name</th><th>Role</th><th></th><th>Proposed</th></tr></thead>
+    <tbody><tr class="row-fn"><td class="col-q"><code>Q4IV</code></td><td class="col-role">function</td><td class="col-arrow">→</td><td class="col-proposed"><code>apply_area_cure</code></td></tr>
+<tr><td class="col-q"><code>Q5YM</code></td><td class="col-role">local/param</td><td class="col-arrow">→</td><td class="col-proposed"><code>place</code></td></tr>
+<tr><td class="col-q"><code>Q4PO</code></td><td class="col-role">local/param</td><td class="col-arrow">→</td><td class="col-proposed"><code>skill_override</code></td></tr>
+<tr><td class="col-q"><code>Q5HT</code></td><td class="col-role">local/param</td><td class="col-arrow">→</td><td class="col-proposed"><code>mobs_in_range</code></td></tr>
+<tr><td class="col-q"><code>Q4VS</code></td><td class="col-role">local/param</td><td class="col-arrow">→</td><td class="col-proposed"><code>user_loc</code></td></tr>
+<tr><td class="col-q"><code>Q5KQ</code></td><td class="col-role">local/param</td><td class="col-arrow">→</td><td class="col-proposed"><code>cure_power</code></td></tr>
+<tr><td class="col-q"><code>Q5JC</code></td><td class="col-role">local/param</td><td class="col-arrow">→</td><td class="col-proposed"><code>poison_power</code></td></tr>
+<tr><td class="col-q"><code>Q5NC</code></td><td class="col-role">local/param</td><td class="col-arrow">→</td><td class="col-proposed"><code>success</code></td></tr>
+<tr><td class="col-q"><code>Q5HY</code></td><td class="col-role">local/param</td><td class="col-arrow">→</td><td class="col-proposed"><code>mob</code></td></tr>
+<tr><td class="col-q"><code>Q527</code></td><td class="col-role">local/param</td><td class="col-arrow">→</td><td class="col-proposed"><code>not_delta</code></td></tr></tbody>
+  </table></div>
+</section>
+<section class="entry" id="entry-2">
+  <div class="entry-header">
+    <span class="entry-num">#3</span>
+    <span class="entry-script">bounty.m</span>
+    <span class="entry-qname"><code>Q4J1</code></span>
+    <span class="entry-arrow">→</span>
+    <span class="entry-proposed"><strong>apply_bounty_on_kill</strong></span>
+  </div>
+  <details class="src-block">
+  <summary>Source</summary>
+  <div class="code-scroll"><pre class="src-pre"><span><span class="ln"> 511</span>  function void Q4J1(obj killer, obj victim) {</span>
+<span><span class="ln"> 512</span>  	if (Q4Y1(killer, victim) &gt; 0x0A) {</span>
+<span><span class="ln"> 513</span>  		setBounty(killer);</span>
+<span><span class="ln"> 514</span>  	}</span>
+<span><span class="ln"> 515</span>  	return();</span>
+<span><span class="ln"> 516</span>  }</span></pre></div>
+</details>
+  <div class="callsites-section">
+  <div class="callsites-header">Called from <span class="cs-count">2</span> locations</div>
+  <details class="callsite-block">
+  <summary><span class="cs-script">bounty.m</span> <span class="cs-line">line 527</span></summary>
+  <div class="cs-scroll"><pre class="cs-pre"><span><span class="ln"> 517</span>  </span>
+<span><span class="ln"> 518</span>  trigger creation {</span>
+<span><span class="ln"> 519</span>  	if (!hasObjVar(this, &quot;bountyKiller&quot;)) {</span>
+<span><span class="ln"> 520</span>  		if (0x00) {</span>
+<span><span class="ln"> 521</span>  			bark(this, &quot;Error attaching bounty script.&quot;);</span>
+<span><span class="ln"> 522</span>  		}</span>
+<span><span class="ln"> 523</span>  		detachScript(this, &quot;bounty&quot;);</span>
+<span><span class="ln"> 524</span>  		return(0x01);</span>
+<span><span class="ln"> 525</span>  	}</span>
+<span><span class="ln"> 526</span>  	obj killer = getObjVar(this, &quot;bountyKiller&quot;);</span>
+<span class="hit-line"><span class="ln"> 527</span>  	Q4J1(killer, this);</span>
+<span><span class="ln"> 528</span>  	return(0x01);</span>
+<span><span class="ln"> 529</span>  }</span>
+<span><span class="ln"> 530</span>  </span>
+<span><span class="ln"> 531</span>  trigger speech(&quot;add&quot;) {</span>
+<span><span class="ln"> 532</span>  	if (0x00) {</span>
+<span><span class="ln"> 533</span>  		Q4J1(speaker, this);</span>
+<span><span class="ln"> 534</span>  	}</span>
+<span><span class="ln"> 535</span>  	return(0x01);</span>
+<span><span class="ln"> 536</span>  }</span>
+<span><span class="ln"> 537</span>  </span></pre></div>
+</details>
+<details class="callsite-block">
+  <summary><span class="cs-script">bounty.m</span> <span class="cs-line">line 533</span></summary>
+  <div class="cs-scroll"><pre class="cs-pre"><span><span class="ln"> 523</span>  		detachScript(this, &quot;bounty&quot;);</span>
+<span><span class="ln"> 524</span>  		return(0x01);</span>
+<span><span class="ln"> 525</span>  	}</span>
+<span><span class="ln"> 526</span>  	obj killer = getObjVar(this, &quot;bountyKiller&quot;);</span>
+<span><span class="ln"> 527</span>  	Q4J1(killer, this);</span>
+<span><span class="ln"> 528</span>  	return(0x01);</span>
+<span><span class="ln"> 529</span>  }</span>
+<span><span class="ln"> 530</span>  </span>
+<span><span class="ln"> 531</span>  trigger speech(&quot;add&quot;) {</span>
+<span><span class="ln"> 532</span>  	if (0x00) {</span>
+<span class="hit-line"><span class="ln"> 533</span>  		Q4J1(speaker, this);</span>
+<span><span class="ln"> 534</span>  	}</span>
+<span><span class="ln"> 535</span>  	return(0x01);</span>
+<span><span class="ln"> 536</span>  }</span>
+<span><span class="ln"> 537</span>  </span>
+<span><span class="ln"> 538</span>  trigger speech(&quot;count&quot;) {</span>
+<span><span class="ln"> 539</span>  	if (0x00) {</span>
+<span><span class="ln"> 540</span>  		string Q4Q1;</span>
+<span><span class="ln"> 541</span>  		int bar = Q4S2(this);</span>
+<span><span class="ln"> 542</span>  		Q4Q1 = bar;</span>
+<span><span class="ln"> 543</span>  		bark(this, Q4Q1);</span></pre></div>
+</details>
+</div>
+  <div class="table-scroll"><table class="renames-table">
+    <thead><tr><th>Q-name</th><th>Role</th><th></th><th>Proposed</th></tr></thead>
+    <tbody><tr class="row-fn"><td class="col-q"><code>Q4J1</code></td><td class="col-role">function</td><td class="col-arrow">→</td><td class="col-proposed"><code>apply_bounty_on_kill</code></td></tr></tbody>
+  </table></div>
+</section>
+<section class="entry" id="entry-3">
+  <div class="entry-header">
+    <span class="entry-num">#4</span>
+    <span class="entry-script">bspiritai.m</span>
+    <span class="entry-qname"><code>Q4GJ</code></span>
+    <span class="entry-arrow">→</span>
+    <span class="entry-proposed"><strong>apply_spirit_attack</strong></span>
+  </div>
+  <details class="src-block">
+  <summary>Source</summary>
+  <div class="code-scroll"><pre class="src-pre"><span><span class="ln"> 172</span>  function void Q4GJ(obj victim, int damage) {</span>
+<span><span class="ln"> 173</span>  	if (!isValid(victim)) {</span>
+<span><span class="ln"> 174</span>  		return();</span>
+<span><span class="ln"> 175</span>  	}</span>
+<span><span class="ln"> 176</span>  	Q423(this, victim, damage, 0x01, 0x00);</span>
+<span><span class="ln"> 177</span>  	sfx(getLocation(this), 0x023B, 0x00);</span>
+<span><span class="ln"> 178</span>  	if (Q50G(victim)) {</span>
+<span><span class="ln"> 179</span>  		attachScript(victim, &quot;poisoned&quot;);</span>
+<span><span class="ln"> 180</span>  		setObjVar(victim, &quot;poison_strength&quot;, 0x02);</span>
+<span><span class="ln"> 181</span>  	}</span>
+<span><span class="ln"> 182</span>  	return();</span>
+<span><span class="ln"> 183</span>  }</span></pre></div>
+</details>
+  <div class="callsites-section">
+  <div class="callsites-header">Called from <span class="cs-count">6</span> locations <span class="cs-more">(first 6 shown)</span></div>
+  <details class="callsite-block">
+  <summary><span class="cs-script">bspiritai.m</span> <span class="cs-line">line 19</span></summary>
+  <div class="cs-scroll"><pre class="cs-pre"><span><span class="ln">   9</span>  member list Q5CC;</span>
+<span><span class="ln">  10</span>  </span>
+<span><span class="ln">  11</span>  member int Q4G9;</span>
+<span><span class="ln">  12</span>  </span>
+<span><span class="ln">  13</span>  member obj trackee;</span>
+<span><span class="ln">  14</span>  </span>
+<span><span class="ln">  15</span>  forward void Q5YK();</span>
+<span><span class="ln">  16</span>  </span>
+<span><span class="ln">  17</span>  forward void Q4TV(obj victim);</span>
+<span><span class="ln">  18</span>  </span>
+<span class="hit-line"><span class="ln">  19</span>  forward void Q4GJ(obj victim, int damage);</span>
+<span><span class="ln">  20</span>  </span>
+<span><span class="ln">  21</span>  forward void Q5GP();</span>
+<span><span class="ln">  22</span>  </span>
+<span><span class="ln">  23</span>  forward void Q4DH(int Q68Q);</span>
+<span><span class="ln">  24</span>  </span>
+<span><span class="ln">  25</span>  forward void Q4BQ();</span>
+<span><span class="ln">  26</span>  </span>
+<span><span class="ln">  27</span>  trigger creation {</span>
+<span><span class="ln">  28</span>  	loc Q4VS = getLocation(this);</span>
+<span><span class="ln">  29</span>  	sfx(Q4VS, 0x0212, 0x00);</span></pre></div>
+</details>
+<details class="callsite-block">
+  <summary><span class="cs-script">bspiritai.m</span> <span class="cs-line">line 164</span></summary>
+  <div class="cs-scroll"><pre class="cs-pre"><span><span class="ln"> 154</span>  function void Q4TV(obj victim) {</span>
+<span><span class="ln"> 155</span>  	loc Q4VS = getLocation(this);</span>
+<span><span class="ln"> 156</span>  	loc there = getLocation(victim);</span>
+<span><span class="ln"> 157</span>  	trackee = victim;</span>
+<span><span class="ln"> 158</span>  	int Q5R6 = getDistanceInTiles(Q4VS, there);</span>
+<span><span class="ln"> 159</span>  	if (Q5R6 &lt; 0x01) {</span>
+<span><span class="ln"> 160</span>  		Q5R6 = 0x01;</span>
+<span><span class="ln"> 161</span>  		if (!isValid(victim)) {</span>
+<span><span class="ln"> 162</span>  			return();</span>
+<span><span class="ln"> 163</span>  		}</span>
+<span class="hit-line"><span class="ln"> 164</span>  		Q4GJ(victim, 0x14);</span>
+<span><span class="ln"> 165</span>  	} else {</span>
+<span><span class="ln"> 166</span>  		walkTo(this, there, 0x0F);</span>
+<span><span class="ln"> 167</span>  		shortcallback(this, Q5R6, 0x34);</span>
+<span><span class="ln"> 168</span>  	}</span>
+<span><span class="ln"> 169</span>  	return();</span>
+<span><span class="ln"> 170</span>  }</span>
+<span><span class="ln"> 171</span>  </span>
+<span><span class="ln"> 172</span>  function void Q4GJ(obj victim, int damage) {</span>
+<span><span class="ln"> 173</span>  	if (!isValid(victim)) {</span>
+<span><span class="ln"> 174</span>  		return();</span></pre></div>
+</details>
+<details class="callsite-block">
+  <summary><span class="cs-script">bspiritai.m</span> <span class="cs-line">line 206</span></summary>
+  <div class="cs-scroll"><pre class="cs-pre"><span><span class="ln"> 196</span>  }</span>
+<span><span class="ln"> 197</span>  </span>
+<span><span class="ln"> 198</span>  trigger callback(0x34) {</span>
+<span><span class="ln"> 199</span>  	loc Q4VS = getLocation(this);</span>
+<span><span class="ln"> 200</span>  	loc there = getLocation(trackee);</span>
+<span><span class="ln"> 201</span>  	int Q5R6 = getDistanceInTiles(Q4VS, there);</span>
+<span><span class="ln"> 202</span>  	if (Q5R6 &lt;= 0x01) {</span>
+<span><span class="ln"> 203</span>  		if (!isValid(trackee)) {</span>
+<span><span class="ln"> 204</span>  			return(0x00);</span>
+<span><span class="ln"> 205</span>  		}</span>
+<span class="hit-line"><span class="ln"> 206</span>  		Q4GJ(trackee, 0x07);</span>
+<span><span class="ln"> 207</span>  		Q5YK();</span>
+<span><span class="ln"> 208</span>  	} else {</span>
+<span><span class="ln"> 209</span>  		getMobsInRange(Q5CD, Q4VS, 0x06);</span>
+<span><span class="ln"> 210</span>  		for (int Q5GY; Q5GY &lt; numInList(Q5CD); Q5GY++) {</span>
+<span><span class="ln"> 211</span>  			setItem(Q5CC, 0x01, Q5GY);</span>
+<span><span class="ln"> 212</span>  		}</span>
+<span><span class="ln"> 213</span>  		int Q68Q = 0x01;</span>
+<span><span class="ln"> 214</span>  		Q4DH(Q68Q);</span>
+<span><span class="ln"> 215</span>  		if (0x00 &lt; numInList(Q5CD)) {</span>
+<span><span class="ln"> 216</span>  			for (int Q5CI; Q5CI &lt; numInList(Q5CD); Q5CI++) {</span></pre></div>
+</details>
+<details class="callsite-block">
+  <summary><span class="cs-script">bspiritai.m</span> <span class="cs-line">line 296</span></summary>
+  <div class="cs-scroll"><pre class="cs-pre"><span><span class="ln"> 286</span>  		appendToList(Q67K, 0x00);</span>
+<span><span class="ln"> 287</span>  	}</span>
+<span><span class="ln"> 288</span>  	Q5YK();</span>
+<span><span class="ln"> 289</span>  	return(0x01);</span>
+<span><span class="ln"> 290</span>  }</span>
+<span><span class="ln"> 291</span>  </span>
+<span><span class="ln"> 292</span>  trigger enterrange(0x00) {</span>
+<span><span class="ln"> 293</span>  	if (!isValid(target)) {</span>
+<span><span class="ln"> 294</span>  		return(0x01);</span>
+<span><span class="ln"> 295</span>  	}</span>
+<span class="hit-line"><span class="ln"> 296</span>  	Q4GJ(target, 0x14)Q5YK();</span>
+<span><span class="ln"> 297</span>  	return(0x01);</span>
+<span><span class="ln"> 298</span>  }</span>
+<span><span class="ln"> 299</span>  </span>
+<span><span class="ln"> 300</span>  trigger callback(0x2F) {</span>
+<span><span class="ln"> 301</span>  	loc Q4VS = getLocation(this);</span>
+<span><span class="ln"> 302</span>  	sfx(Q4VS, 0x023A, 0x00);</span>
+<span><span class="ln"> 303</span>  	shortcallback(this, 0x03, 0x2F);</span>
+<span><span class="ln"> 304</span>  	return(0x00);</span>
+<span><span class="ln"> 305</span>  }</span>
+<span><span class="ln"> 306</span>  </span></pre></div>
+</details>
+<details class="callsite-block">
+  <summary><span class="cs-script">vortexai.m</span> <span class="cs-line">line 21</span></summary>
+  <div class="cs-scroll"><pre class="cs-pre"><span><span class="ln">  11</span>  member obj Q67S;</span>
+<span><span class="ln">  12</span>  </span>
+<span><span class="ln">  13</span>  member int Q4G9;</span>
+<span><span class="ln">  14</span>  </span>
+<span><span class="ln">  15</span>  member obj trackee;</span>
+<span><span class="ln">  16</span>  </span>
+<span><span class="ln">  17</span>  forward void Q5YK();</span>
+<span><span class="ln">  18</span>  </span>
+<span><span class="ln">  19</span>  forward void Q4TV(obj victim);</span>
+<span><span class="ln">  20</span>  </span>
+<span class="hit-line"><span class="ln">  21</span>  forward void Q4GJ(obj victim, int damage);</span>
+<span><span class="ln">  22</span>  </span>
+<span><span class="ln">  23</span>  forward void Q5GP();</span>
+<span><span class="ln">  24</span>  </span>
+<span><span class="ln">  25</span>  forward void Q4DH(int Q68Q);</span>
+<span><span class="ln">  26</span>  </span>
+<span><span class="ln">  27</span>  forward void Q4BQ();</span>
+<span><span class="ln">  28</span>  </span>
+<span><span class="ln">  29</span>  trigger creation {</span>
+<span><span class="ln">  30</span>  	if (random(0x00, 0x01F4) == 0x2A) {</span>
+<span><span class="ln">  31</span>  		setType(this, 0xDC);</span></pre></div>
+</details>
+<details class="callsite-block">
+  <summary><span class="cs-script">vortexai.m</span> <span class="cs-line">line 162</span></summary>
+  <div class="cs-scroll"><pre class="cs-pre"><span><span class="ln"> 152</span>  	return();</span>
+<span><span class="ln"> 153</span>  }</span>
+<span><span class="ln"> 154</span>  </span>
+<span><span class="ln"> 155</span>  function void Q4TV(obj victim) {</span>
+<span><span class="ln"> 156</span>  	loc Q4VS = getLocation(Q67S);</span>
+<span><span class="ln"> 157</span>  	loc there = getLocation(victim);</span>
+<span><span class="ln"> 158</span>  	trackee = victim;</span>
+<span><span class="ln"> 159</span>  	int Q5R6 = getDistanceInTiles(Q4VS, there);</span>
+<span><span class="ln"> 160</span>  	if (Q5R6 &lt; 0x01) {</span>
+<span><span class="ln"> 161</span>  		Q5R6 = 0x01;</span>
+<span class="hit-line"><span class="ln"> 162</span>  		Q4GJ(victim, 0x1E);</span>
+<span><span class="ln"> 163</span>  	} else {</span>
+<span><span class="ln"> 164</span>  		walkTo(Q67S, there, 0x0E);</span>
+<span><span class="ln"> 165</span>  		shortcallback(Q67S, Q5R6, 0x34);</span>
+<span><span class="ln"> 166</span>  	}</span>
+<span><span class="ln"> 167</span>  	return();</span>
+<span><span class="ln"> 168</span>  }</span>
+<span><span class="ln"> 169</span>  </span>
+<span><span class="ln"> 170</span>  function void Q4GJ(obj victim, int damage) {</span>
+<span><span class="ln"> 171</span>  	loc Q4VS = getLocation(Q67S);</span>
+<span><span class="ln"> 172</span>  	sfx(Q4VS, 0x28, 0x00);</span></pre></div>
+</details>
+</div>
+  <div class="table-scroll"><table class="renames-table">
+    <thead><tr><th>Q-name</th><th>Role</th><th></th><th>Proposed</th></tr></thead>
+    <tbody><tr class="row-fn"><td class="col-q"><code>Q4GJ</code></td><td class="col-role">function</td><td class="col-arrow">→</td><td class="col-proposed"><code>apply_spirit_attack</code></td></tr></tbody>
+  </table></div>
+</section>
+<section class="entry" id="entry-4">
+  <div class="entry-header">
+    <span class="entry-num">#5</span>
+    <span class="entry-script">build.m</span>
+    <span class="entry-qname"><code>Q5RR</code></span>
+    <span class="entry-arrow">→</span>
+    <span class="entry-proposed"><strong>run_shade_mountains</strong></span>
+  </div>
+  <details class="src-block">
+  <summary>Source</summary>
+  <div class="code-scroll"><pre class="src-pre"><span><span class="ln"> 838</span>  function void Q5RR() {</span>
+<span><span class="ln"> 839</span>  	Q5OH(0x05);</span>
+<span><span class="ln"> 840</span>  	return();</span>
+<span><span class="ln"> 841</span>  }</span></pre></div>
+</details>
+  <div class="callsites-section">
+  <div class="callsites-header">Called from <span class="cs-count">2</span> locations</div>
+  <details class="callsite-block">
+  <summary><span class="cs-script">build.m</span> <span class="cs-line">line 37</span></summary>
+  <div class="cs-scroll"><pre class="cs-pre"><span><span class="ln">  27</span>  forward void Q4JL(obj );</span>
+<span><span class="ln">  28</span>  </span>
+<span><span class="ln">  29</span>  forward void Q5RB();</span>
+<span><span class="ln">  30</span>  </span>
+<span><span class="ln">  31</span>  forward void Q5RI();</span>
+<span><span class="ln">  32</span>  </span>
+<span><span class="ln">  33</span>  forward void Q5RG();</span>
+<span><span class="ln">  34</span>  </span>
+<span><span class="ln">  35</span>  forward void Q5IA();</span>
+<span><span class="ln">  36</span>  </span>
+<span class="hit-line"><span class="ln">  37</span>  forward void Q5RR();</span>
+<span><span class="ln">  38</span>  </span>
+<span><span class="ln">  39</span>  forward void Q479();</span>
+<span><span class="ln">  40</span>  </span>
+<span><span class="ln">  41</span>  forward void Q5I8();</span>
+<span><span class="ln">  42</span>  </span>
+<span><span class="ln">  43</span>  forward void Q4B5();</span>
+<span><span class="ln">  44</span>  </span>
+<span><span class="ln">  45</span>  forward void Q5ZH();</span>
+<span><span class="ln">  46</span>  </span>
+<span><span class="ln">  47</span>  forward void Q65Z();</span></pre></div>
+</details>
+<details class="callsite-block">
+  <summary><span class="cs-script">build.m</span> <span class="cs-line">line 653</span></summary>
+  <div class="cs-scroll"><pre class="cs-pre"><span><span class="ln"> 643</span>  	case 0x01</span>
+<span><span class="ln"> 644</span>  		Q5RI();</span>
+<span><span class="ln"> 645</span>  		break;</span>
+<span><span class="ln"> 646</span>  	case 0x02</span>
+<span><span class="ln"> 647</span>  		Q5RG();</span>
+<span><span class="ln"> 648</span>  		break;</span>
+<span><span class="ln"> 649</span>  	case 0x03</span>
+<span><span class="ln"> 650</span>  		Q5IA();</span>
+<span><span class="ln"> 651</span>  		break;</span>
+<span><span class="ln"> 652</span>  	case 0x04</span>
+<span class="hit-line"><span class="ln"> 653</span>  		Q5RR();</span>
+<span><span class="ln"> 654</span>  		break;</span>
+<span><span class="ln"> 655</span>  	case 0x05</span>
+<span><span class="ln"> 656</span>  		Q479();</span>
+<span><span class="ln"> 657</span>  		break;</span>
+<span><span class="ln"> 658</span>  	case 0x06</span>
+<span><span class="ln"> 659</span>  		Q5I8();</span>
+<span><span class="ln"> 660</span>  		break;</span>
+<span><span class="ln"> 661</span>  	case 0x07</span>
+<span><span class="ln"> 662</span>  		Q4B5();</span>
+<span><span class="ln"> 663</span>  		break;</span></pre></div>
+</details>
+</div>
+  <div class="table-scroll"><table class="renames-table">
+    <thead><tr><th>Q-name</th><th>Role</th><th></th><th>Proposed</th></tr></thead>
+    <tbody><tr class="row-fn"><td class="col-q"><code>Q5RR</code></td><td class="col-role">function</td><td class="col-arrow">→</td><td class="col-proposed"><code>run_shade_mountains</code></td></tr></tbody>
+  </table></div>
+</section></main>
+</body></html>

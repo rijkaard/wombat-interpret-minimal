@@ -1,0 +1,33 @@
+inherits globals;
+
+trigger creation {
+	setType(this, 0x01);
+	return(0x00);
+}
+
+trigger enterrange(0x01) {
+	loc loc_a = 0x140A, 0x038C, (0x00 - 0x16);
+	loc loc_b = 0x1418, 0x031D, 0x16;
+	loc loc_c = 0x1420, 0x032A, (0x00 - 0x13);
+	loc loc_d = 0x140D, 0x03D9, 0x16;
+	loc cur_loc = getLocation(this);
+	loc dest;
+	dest = 0x00 - 0x01, 0x00 - 0x01, 0x00;
+	if (cur_loc == loc_a) {
+		dest = 0x1417, 0x0322, 0x04;
+	}
+	if (cur_loc == loc_b) {
+		dest = 0x140A, 0x0387, 0x00;
+	}
+	if (cur_loc == loc_c) {
+		dest = 0x1412, 0x03D9, 0x05;
+	}
+	if (cur_loc == loc_d) {
+		dest = 0x141C, 0x032A, 0x00;
+	}
+	if (isInMap(dest)) {
+		int r = teleport(target, dest);
+		return(!r);
+	}
+	return(0x01);
+}

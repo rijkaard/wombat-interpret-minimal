@@ -1,0 +1,6 @@
+inherits statbase;
+
+function int apply_feeblemind(obj user, obj usedon, int reverse) {
+	int fizzled = apply_stat_spell(user, usedon, 0x02, 0x00, reverse);
+	return(fizzled);
+}

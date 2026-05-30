@@ -1,0 +1,49 @@
+inherits spelskil;
+
+trigger creation {
+	shortcallback(this, 0x01, 0x2F);
+	return(0x01);
+}
+
+trigger callback(0x2F) {
+	int mana_amount;
+	int result = getResource(mana_amount, this, "magic", 0x03, 0x02);
+	int charges = mana_amount / 0x03;
+	setObjVar(this, "charges", charges);
+	return(0x01);
+}
+
+function int use_charge() {
+	int charges = getObjVar(this, "charges");
+	returnResourcesToBank(this, 0x03, "magic");
+	if (charges <= 0x00) {
+		removeObjVar(this, "charges");
+	} else {
+		setObjVar(this, "charges", charges - 0x01);
+	}
+	return(charges);
+}
+
+trigger equip {
+	if (use_charge()) {
+		setInvisible(equippedon, 0x01);
+	} else {
+		detachScript(this, "wearinvis");
+	}
+	return(0x01);
+}
+
+trigger unequip {
+	setInvisible(unequippedfrom, 0x00);
+	return(0x01);
+}
+
+trigger time("min:*0") {
+	if (isEquipped(this)) {
+		if (!use_charge()) {
+			setInvisible(containedBy(this), 0x00);
+			detachScript(this, "wearinvis");
+		}
+	}
+	return(0x01);
+}

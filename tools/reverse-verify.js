@@ -25,11 +25,11 @@ const path = require('path');
 
 const argv = process.argv.slice(2);
 function getArg(flag, def) { const i = argv.indexOf(flag); return i >= 0 ? argv[i+1] : def; }
-const origDir    = getArg('--orig-dir',    '../rundir/scripts.wombat');
-const scriptsDir = getArg('--scripts-dir', './scripts');
+const origDir    = getArg('--orig-dir',    path.join(__dirname, '../../rundir/scripts.wombat'));
+const scriptsDir = getArg('--scripts-dir', path.join(__dirname, '../scripts.interpreted'));
 const outDir     = getArg('--out-dir',     '/tmp/wombat-reversed');
-const renamesFile = getArg('--renames',   './renames.json');
-const symbolsFile = getArg('--symbols',   './symbols.json');
+const renamesFile = getArg('--renames',   path.join(__dirname, '../renames/renames.json'));
+const symbolsFile = getArg('--symbols',   path.join(__dirname, '../symbols.json'));
 
 if (!fs.existsSync(renamesFile)) { console.error('renames.json not found'); process.exit(1); }
 if (!fs.existsSync(symbolsFile)) { console.error('symbols.json not found'); process.exit(1); }

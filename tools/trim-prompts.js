@@ -12,8 +12,8 @@ const path = require('path');
 
 const argv = process.argv.slice(2);
 function getArg(f, d) { const i = argv.indexOf(f); return i >= 0 ? argv[i+1] : d; }
-const inDir   = getArg('--in-dir',  './step-10.naming');
-const outDir  = getArg('--out-dir', './step-10b');
+const inDir   = getArg('--in-dir',  path.join(__dirname, '../step-10.naming'));
+const outDir  = getArg('--out-dir', path.join(__dirname, '../step-10b'));
 const singleBatch = getArg('--batch', null);
 
 const inPrompts  = path.join(inDir,  'prompts');

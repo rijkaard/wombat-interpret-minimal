@@ -14,8 +14,8 @@ const path = require('path');
 const argv = process.argv.slice(2);
 function getArg(f, d) { const i = argv.indexOf(f); return i >= 0 ? argv[i+1] : d; }
 const inputFile  = getArg('--input',   './renames-10-final.json');
-const scriptsDir = getArg('--scripts-dir', './scripts');
-const renamesFile = getArg('--renames', './renames.json');
+const scriptsDir = getArg('--scripts-dir', path.join(__dirname, '../scripts.interpreted'));
+const renamesFile = getArg('--renames', path.join(__dirname, '../renames/renames.json'));
 const dryRun     = argv.includes('--dry-run');
 
 if (!fs.existsSync(inputFile)) {

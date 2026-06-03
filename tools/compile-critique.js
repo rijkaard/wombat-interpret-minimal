@@ -20,8 +20,8 @@ const argv = process.argv.slice(2);
 function getArg(f, d) { const i = argv.indexOf(f); return i >= 0 ? argv[i+1] : d; }
 const proposalsFile = argv.find(a => !a.startsWith('--'));
 const round         = getArg('--round', '3');
-const critiqueDir   = getArg('--critique-dir', `./step-${round}.critique`);
-const outFile       = getArg('--out', `./renames-${round}.json`);
+const critiqueDir   = getArg('--critique-dir', path.join(__dirname, `../step-${round}.critique`));
+const outFile       = getArg('--out', path.join(__dirname, `../renames/renames-${round}.json`));
 const diffFile      = getArg('--diff', path.join(critiqueDir, 'diff.txt'));
 
 if (!proposalsFile || !fs.existsSync(proposalsFile)) {

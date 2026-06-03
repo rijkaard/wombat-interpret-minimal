@@ -14,9 +14,9 @@ const path = require('path');
 const argv = process.argv.slice(2);
 function getArg(flag, def) { const i = argv.indexOf(flag); return i >= 0 ? argv[i+1] : def; }
 const targetScript = argv.find(a => !a.startsWith('--'));
-const scriptsDir   = getArg('--scripts-dir', './scripts');
-const renamesFile  = getArg('--renames', './renames.json');
-const symbolsFile  = getArg('--symbols', './symbols.json');
+const scriptsDir   = getArg('--scripts-dir', path.join(__dirname, '../scripts.interpreted'));
+const renamesFile  = getArg('--renames', path.join(__dirname, '../renames/renames.json'));
+const symbolsFile  = getArg('--symbols', path.join(__dirname, '../symbols.json'));
 
 if (!targetScript) {
   console.error('Usage: spot-check-inheritors.js <script-name> [--scripts-dir ./scripts]');

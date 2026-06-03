@@ -288,8 +288,8 @@ function parseFile(src, scriptName) {
 
 const argv = process.argv.slice(2);
 function getArg(flag, def) { const i = argv.indexOf(flag); return i >= 0 ? argv[i+1] : def; }
-const scriptsDir = getArg('--scripts-dir', './scripts');
-const outFile = getArg('--out', './symbols.json');
+const scriptsDir = getArg('--scripts-dir', path.join(__dirname, '../scripts.interpreted'));
+const outFile = getArg('--out', path.join(__dirname, '../symbols.json'));
 
 // Load all script files
 const files = fs.readdirSync(scriptsDir).filter(f => f.endsWith('.m'));
@@ -372,8 +372,9 @@ for (const [scriptName, data] of Object.entries(parsed)) {
 
 // Load existing renames if present
 let renames = {};
-if (fs.existsSync('./renames.json')) {
-  renames = JSON.parse(fs.readFileSync('./renames.json', 'utf8'));
+const renamesPath = path.join(__dirname, '../renames/renames.json');
+if (fs.existsSync(renamesPath)) {
+  renames = JSON.parse(fs.readFileSync(renamesPath, 'utf8'));
 }
 
 // Mark resolved names

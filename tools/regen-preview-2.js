@@ -21,7 +21,7 @@ function escHtml(s) {
 
 // ── 1. Load symbols ───────────────────────────────────────────────────────────
 
-const { symbols, inherits: inheritMap } = JSON.parse(fs.readFileSync('./symbols.json', 'utf8'));
+const { symbols, inherits: inheritMap } = JSON.parse(fs.readFileSync(path.join(__dirname, '../symbols.json'), 'utf8'));
 const leaves = Object.values(symbols).filter(s => s.is_leaf && s.is_q);
 console.log(`Loaded ${leaves.length} leaf functions from symbols.json`);
 
@@ -98,7 +98,7 @@ console.log(`Default renames: ${Object.keys(defaultRenames).length} entries`);
 
 // ── 5. Scan call sites ────────────────────────────────────────────────────────
 
-const scriptsDir = path.join(__dirname, 'scripts');
+const scriptsDir = path.join(__dirname, '../scripts.interpreted');
 const scriptFiles = fs.readdirSync(scriptsDir).filter(f => f.endsWith('.m')).sort();
 const functionQCodes = new Set(leaves.map(l => l.name));
 const MAX_CALL_SITES = 6;
@@ -490,7 +490,7 @@ function showToast(msg) {
 </body>
 </html>`;
 
-const outFile = outOverride || path.join(__dirname, `preview-round-${roundLabel}.html`);
+const outFile = outOverride || path.join(__dirname, `../preview-round-${roundLabel}.html`);
 fs.writeFileSync(outFile, html);
 const size = (fs.statSync(outFile).size / 1024 / 1024).toFixed(1);
 console.log(`\nWrote ${outFile} (${size} MB)`);

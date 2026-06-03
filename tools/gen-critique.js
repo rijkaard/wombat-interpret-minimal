@@ -28,10 +28,10 @@ function getArg(f, d) { const i = argv.indexOf(f); return i >= 0 ? argv[i+1] : d
 const proposalsFile = argv.find(a => !a.startsWith('--'));
 const round        = getArg('--round', '3');
 const batchSize    = parseInt(getArg('--batch-size', '4'), 10);
-const scriptsDir   = getArg('--scripts-dir', './scripts');
-const symbolsFile  = getArg('--symbols', './symbols.json');
-const outDir       = getArg('--out-dir', `./step-${round}.critique`);
-const builtinsFile = getArg('--builtins', '../ouo/wombat_builtins.inc');
+const scriptsDir   = getArg('--scripts-dir', path.join(__dirname, '../scripts.interpreted'));
+const symbolsFile  = getArg('--symbols', path.join(__dirname, '../symbols.json'));
+const outDir       = getArg('--out-dir', path.join(__dirname, `../step-${round}.critique`));
+const builtinsFile = getArg('--builtins', path.join(__dirname, '../../ouo/wombat_builtins.inc'));
 
 if (!proposalsFile || !fs.existsSync(proposalsFile)) {
   console.error('Usage: gen-critique.js renames-N-raw.json [options]');

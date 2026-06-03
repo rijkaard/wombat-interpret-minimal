@@ -16,9 +16,9 @@ const path = require('path');
 const argv = process.argv.slice(2);
 function getArg(flag, def) { const i = argv.indexOf(flag); return i >= 0 ? argv[i+1] : def; }
 const renameFile = argv.find(a => !a.startsWith('--'));
-const scriptsDir = getArg('--scripts-dir', './scripts');
+const scriptsDir = getArg('--scripts-dir', path.join(__dirname, '../scripts.interpreted'));
 const markUnint = argv.includes('--mark-unint');
-const symbolsFile = getArg('--symbols', './symbols.json');
+const symbolsFile = getArg('--symbols', path.join(__dirname, '../symbols.json'));
 
 if (!renameFile || !fs.existsSync(renameFile)) {
   console.error('Usage: node apply-renames.js renames-N.json [--scripts-dir ./scripts] [--mark-unint]');
@@ -27,9 +27,10 @@ if (!renameFile || !fs.existsSync(renameFile)) {
 
 const newRenames = JSON.parse(fs.readFileSync(renameFile, 'utf8'));
 
+const cumRenamesPath = path.join(__dirname, '../renames/renames.json');
 let renames = {};
-if (fs.existsSync('./renames.json')) {
-  renames = JSON.parse(fs.readFileSync('./renames.json', 'utf8'));
+if (fs.existsSync(cumRenamesPath)) {
+  renames = JSON.parse(fs.readFileSync(cumRenamesPath, 'utf8'));
 }
 Object.assign(renames, newRenames);
 
@@ -204,7 +205,7 @@ for (const script of allScripts) {
   }
 }
 
-fs.writeFileSync('./renames.json', JSON.stringify(renames, null, 2));
+fs.writeFileSync(cumRenamesPath, JSON.stringify(renames, null, 2));
 console.log(`\nApplied ${totalReplacements} replacements across ${allScripts.length} scripts.`);
-console.log(`Cumulative renames saved to renames.json (${Object.keys(renames).length} entries).`);
+console.log(`Cumulative renames saved to renames/renames.json (${Object.keys(renames).length} entries).`);
 console.log(`\nRun: node extract-symbols.js && node regen-preview-2.js --proposals renames-N-critiqued.json`);

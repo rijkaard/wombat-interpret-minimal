@@ -53,7 +53,7 @@ function makeLookup(leaf) {
 
 // ── 5. Extract call sites ─────────────────────────────────────────────────────
 
-const scriptsDir = path.join(__dirname, 'scripts');
+const scriptsDir = path.join(__dirname, '../scripts.interpreted');
 const scriptFiles = fs.readdirSync(scriptsDir).filter(f => f.endsWith('.m')).sort();
 
 const functionQCodes = new Set(allLeaves.map(l => l.name));
@@ -469,7 +469,7 @@ function showToast(msg) {
 </body>
 </html>`;
 
-const outFile = path.join(__dirname, 'preview-round-2.html');
+const outFile = path.join(__dirname, '../preview-round-2.html');
 fs.writeFileSync(outFile, html);
 const size = (fs.statSync(outFile).size / 1024 / 1024).toFixed(1);
 console.log(`\nWrote ${outFile} (${size} MB)`);

@@ -11,8 +11,8 @@ const argv = process.argv.slice(2);
 function getArg(flag, def) { const i = argv.indexOf(flag); return i >= 0 ? argv[i+1] : def; }
 const proposalsFile = getArg('--proposals', '/tmp/prev_proposals.json');
 const roundLabel    = getArg('--round', '9');
-const outFile       = getArg('--out', `./preview-round-${roundLabel}.html`);
-const scriptsDir    = getArg('--scripts-dir', './scripts');
+const outFile       = getArg('--out', path.join(__dirname, `../preview-round-${roundLabel}.html`));
+const scriptsDir    = getArg('--scripts-dir', path.join(__dirname, '../scripts.interpreted'));
 
 function escHtml(s) {
   return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -20,7 +20,7 @@ function escHtml(s) {
 
 // ── Load symbols ──────────────────────────────────────────────────────────────
 
-const { symbols } = JSON.parse(fs.readFileSync('./symbols.json', 'utf8'));
+const { symbols } = JSON.parse(fs.readFileSync(path.join(__dirname, '../symbols.json'), 'utf8'));
 const members = Object.values(symbols).filter(s => s.is_q && s.kind === 'member');
 console.log(`Loaded ${members.length} Q-coded member variables from symbols.json`);
 

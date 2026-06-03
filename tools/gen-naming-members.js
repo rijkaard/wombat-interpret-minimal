@@ -10,12 +10,12 @@ const path = require('path');
 
 const argv = process.argv.slice(2);
 function getArg(f, d) { const i = argv.indexOf(f); return i >= 0 ? argv[i+1] : d; }
-const scriptsDir   = getArg('--scripts-dir', './scripts');
-const outDir       = getArg('--out-dir', './step-9.naming/prompts');
+const scriptsDir   = getArg('--scripts-dir', path.join(__dirname, '../scripts.interpreted'));
+const outDir       = getArg('--out-dir', path.join(__dirname, '../step-9.naming/prompts'));
 const batchSize    = parseInt(getArg('--batch-size', '6'), 10);
-const builtinsFile = getArg('--builtins', '../ouo/wombat_builtins.inc');
-const symbolsFile  = getArg('--symbols', './symbols.json');
-const renamesFile  = getArg('--renames', './renames.json');
+const builtinsFile = getArg('--builtins', path.join(__dirname, '../../ouo/wombat_builtins.inc'));
+const symbolsFile  = getArg('--symbols', path.join(__dirname, '../symbols.json'));
+const renamesFile  = getArg('--renames', path.join(__dirname, '../renames/renames.json'));
 const roundLabel   = getArg('--round', '9');
 const batchesOut   = getArg('--batches', `/tmp/round${roundLabel}_batches.json`);
 

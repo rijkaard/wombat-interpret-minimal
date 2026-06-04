@@ -6817,7 +6817,7 @@
   "quest.Q5VQ": "init_murder_quest",
   "shiptillerman.Q62Q": "exec_ship_command",
   "shiptillerman.Q62R": "nav_to_waypoint",
-  "spellai.Q4O9": "try_cast_spell",
+  "spellai.Q4O9": "ai_maybe_cast_spell",
   "spellai.Q5UO": "pick_and_cast_spell",
   "tutwisp.Q5QX": "run_step",
   "tutwisp.Q5QY": "bark_via_wisp",

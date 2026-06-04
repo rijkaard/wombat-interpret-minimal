@@ -34,7 +34,7 @@ member int adjusted_spell_level;
 
 member int spell_scroll_type;
 
-forward void try_cast_spell(obj caster);
+forward void ai_maybe_cast_spell(obj caster);
 
 forward int spend_mana(obj user, int mana_cost);
 
@@ -481,7 +481,7 @@ function void pick_and_cast_spell(obj caster) {
 	return();
 }
 
-function void try_cast_spell(obj caster) {
+function void ai_maybe_cast_spell(obj caster) {
 	if (getNumTargets(caster) <= 0x00) {
 		return();
 	}
@@ -583,6 +583,6 @@ trigger callback(0x48) {
 }
 
 trigger callback(0x2D) {
-	try_cast_spell(this);
+	ai_maybe_cast_spell(this);
 	return(0x01);
 }

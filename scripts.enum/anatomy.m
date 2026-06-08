@@ -35,6 +35,10 @@ trigger targetobj {
 		barkTo(usedon, user, "I am too far away to do that.");
 		return(0x00);
 	}
+	if (!canSeeObj(user, usedon)) {
+		systemMessage(user, "You can't see that.");
+		return(0x00);
+	}
 	int skill = getSkillLevel(user, SKILL_ANATOMY);
 	int str_val = getStrength(usedon);
 	int dex_val = getDexterity(usedon);
@@ -79,10 +83,10 @@ trigger targetobj {
 		dex_desc = " moves like quicksilver";
 	}
 	if (dex_val == 0x09) {
-		dex_desc = "like one of the fastest people you have ever seen";
+		dex_desc = "like one of the fastest creatures you have ever seen";
 	}
 	if (dex_val > 0x09) {
-		dex_desc = "superhumanly agile";
+		dex_desc = "supernaturally agile";
 	}
 	if (str_val == 0x01) {
 		str_desc = "rather feeble";
@@ -109,10 +113,10 @@ trigger targetobj {
 		str_desc = "strong as an ox";
 	}
 	if (str_val == 0x09) {
-		str_desc = "like one of the strongest people you have ever seen";
+		str_desc = "like one of the strongest creatures you have ever seen";
 	}
 	if (str_val > 0x09) {
-		str_desc = "superhumanly strong";
+		str_desc = "supernaturally strong";
 	}
 	msg = getHeShe(usedon);
 	if (dex_val != 0x08) {

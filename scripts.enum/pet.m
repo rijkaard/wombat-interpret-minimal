@@ -80,6 +80,8 @@ forward int can_eat(obj , obj );
 
 member int hour_tick_count;
 
+member int petAllCmd;
+
 function void animate_refuse() {
 	if (getObjType(this) < 0xC8) {
 		animateMobile(this, 0x11, 0x05, 0x01, 0x00, 0x00);
@@ -324,6 +326,9 @@ trigger speech("*") {
 		animate_refuse();
 	}
 	if (parse_and_route_command(this, speaker, arg)) {
+		if (petAllCmd) {
+			return(0x01);
+		}
 		return(0x00);
 	}
 	return(0x01);
@@ -334,6 +339,11 @@ function int find_name_in_text(list text, obj this) {
 	for (int i = 0x00; i < numInList(text); i++) {
 		word = text[i];
 		if (word == getName(this)) {
+			petAllCmd = 0x00;
+			return(i + 0x01);
+		}
+		if (word == "all") {
+			petAllCmd = 0x01;
 			return(i + 0x01);
 		}
 	}

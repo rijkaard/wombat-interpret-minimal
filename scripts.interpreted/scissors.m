@@ -31,6 +31,10 @@ trigger targetobj {
 	if (usedon == NULL()) {
 		return(0x00);
 	}
+	if (!canSeeObj(user, usedon)) {
+		systemMessage(user, "You can't see that.");
+		return(0x00);
+	}
 	int obj_type = getObjType(usedon);
 	loc location = getLocation(user);
 	obj bandage;

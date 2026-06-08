@@ -5,6 +5,6 @@ trigger use {
 	int felucca_phase = getFeluccaPhase();
 	string trammel_phase_str = getMoonPhaseStr(trammel_phase);
 	string felucca_phase_str = getMoonPhaseStr(felucca_phase);
-	barkTo(user, user, trammel_phase_str + " " + felucca_phase_str);
+	superBark(user, trammel_phase_str + " " + felucca_phase_str, 0xFFFFFFFF, 0x08, 0x00);
 	return(0x00);
 }

@@ -20,7 +20,9 @@ function int set_polymorph_type(obj user, int newType) {
 				setObjVar(m_target, "oldHue", getHue(m_target));
 			}
 			setType(user, newType);
-			setHue(user, 0x00);
+			if ((newType != 0x0190) && (newType != 0x0191)) {
+				setHue(user, 0x00);
+			}
 			int duration = (getSkillLevel(user, SKILL_MAGERY) / 0x05) * 0x05;
 			if (isScroll()) {
 				duration = 0x3C;

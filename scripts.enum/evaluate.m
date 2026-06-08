@@ -32,6 +32,10 @@ trigger targetobj {
 	if (getDistanceInTiles(user_loc, there) > 0x08) {
 		return(0x00);
 	}
+	if (!canSeeObj(user, usedon)) {
+		systemMessage(user, "You can't see that.");
+		return(0x00);
+	}
 	int skill = getSkillLevel(user, SKILL_EVAL_INT);
 	int intel = getIntelligence(usedon);
 	skill = 0x64 - skill;

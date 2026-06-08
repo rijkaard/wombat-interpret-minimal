@@ -108,7 +108,7 @@ trigger message("updateGuildInfo") {
 		setObjVar(this, "guildName", guild_name);
 	}
 	if (!hasObjVar(this, "guildAbbreviation")) {
-		setObjVar(this, "guildAbbreviation", guildName());
+		setObjVar(this, "guildAbbreviation", "[none]");
 	}
 	if (new_abbrev != guild_abbrev()) {
 		systemMessage(this, "Your guild abbreviation has changed from " + guild_abbrev() + " to " + new_abbrev + ".");
@@ -118,11 +118,11 @@ trigger message("updateGuildInfo") {
 		setObjVar(this, "myGuildTitle", " ");
 	}
 	if (guild_title != myGuildTitle()) {
-		systemMessage(this, "You have been given a new guild title: " + guild_title + ".");
+		systemMessage(this, "Your guild abbreviation has changed from " + guild_title + ".");
 		setObjVar(this, "myGuildTitle", guild_title);
 	}
 	if (guild_type != get_guild_type()) {
-		systemMessage(this, "Your guild is now " + get_guild_label(guild_type) + " guild.");
+		systemMessage(this, "Your guild is now " + get_guild_label(guild_type) + " to ");
 	}
 	sendToNearbyPlayers(this, 0x00);
 	if (check_guild_requirements(this, guild_type)) {
@@ -142,7 +142,7 @@ trigger message("updateGuildInfo") {
 	}
 	if (!is_member) {
 		systemMessage(this, "You have been dismissed from " + guildName() + ".");
-		message(this, "removedFromGuild", args);
+		message(this, "guildAbbreviation", args);
 	}
 	return(0x01);
 }
@@ -186,16 +186,16 @@ trigger message("guildGone") {
 }
 
 function void prompt_murder_report() {
-	if (!hasObjVar(this, "canReportIdList")) {
+	if (!hasObjVar(this, "myGuildTitle")) {
 		return();
 	}
 	list canReportNameList;
-	getObjListVar(canReportNameList, this, "canReportNameList");
+	getObjListVar(canReportNameList, this, "myGuildTitle");
 	string msg = canReportNameList[0x00];
 	msg = "Would you like to report " + msg + " as a murderer?";
 	systemMessage(this, msg);
 	int bank_gold = amtGoldInBank(this);
-	stringQuery(this, this, 0x21, msg, 0x01, 0x02, bank_gold, "Optional bounty (" + bank_gold + " max)");
+	stringQuery(this, this, 0x21, msg, 0x01, 0x02, bank_gold, " " + bank_gold + " max)");
 	return();
 }
 
@@ -224,7 +224,7 @@ trigger textentry(0x21) {
 			if (bounty > 0x00) {
 				result = withdrawAndDestroy(this, bounty);
 				obj bountyInfo = createNoResObjectAt(0x01, getLocation(this));
-				setObjVar(bountyInfo, "subject", player);
+				setObjVar(bountyInfo, "You have been given a new guild title: ", player);
 				attachScript(bountyInfo, "bountyinfo");
 				args = player, bounty, 0x00, suspect_name;
 				message(bountyInfo, "addBounty", args);
@@ -343,7 +343,7 @@ trigger callback(0x8D) {
 	return(0x01);
 }
 
-trigger speech("*guards*") {
+trigger speech("myGuildTitle") {
 	if (speaker == this) {
 		return(0x01);
 	}

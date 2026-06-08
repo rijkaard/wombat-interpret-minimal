@@ -54,7 +54,6 @@ member int poison_power;
 	int drink = 0x00;
 	int is_alcohol = 0x00;
 	int is_consumable = 0x00;
-	obj bottle;
 	if (hasObjVar(usedon, "I_am_food")) {
 		food = getObjVar(usedon, "I_am_food");
 		if (food == 0x01) {
@@ -84,7 +83,6 @@ member int poison_power;
 		}
 		if (!testSkill(user, 0x1E)) {
 			systemMessage(user, "You fail to apply a sufficient dose of poison on " + getWeaponName(usedon) + ".");
-			bottle = createGlobalObjectAt(0x0F0E, there);
 			destroyOne(poison_potion);
 			return(0x00);
 		}
@@ -106,7 +104,6 @@ member int poison_power;
 		attachScript(usedon, "poisweap");
 		setObjVar(usedon, "poison_chance", getSkillLevel(this, 0x1E) / 0x04);
 		setObjVar(usedon, "poison_left", (0x14 - (poison_power * 0x02)));
-		bottle = createGlobalObjectAt(0x0F0E, there);
 		destroyOne(poison_potion);
 		return(0x00);
 	} else {
@@ -132,7 +129,6 @@ member int poison_power;
 		copyControllerInfo(usedon, user);
 		attachScript(usedon, "poisfood");
 		setObjVar(usedon, "poison_chance", getSkillLevel(this, 0x1E) / 0x04);
-		bottle = createGlobalObjectAt(0x0F0E, there);
 		destroyOne(poison_potion);
 		return(0x00);
 	}

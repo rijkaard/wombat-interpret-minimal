@@ -128,7 +128,7 @@ trigger use {
 	}
 	if ((obj_type == 0x1EC0) || (obj_type == 0x1EC3)) {
 		if (getItemAtSlot(user, 0x19) != NULL()) {
-			ebarkTo(this, user, "You can't practice on this while on horseback.");
+			ebarkTo(this, user, "You can't practice on this while mounted.");
 			return(0x01);
 		}
 		if (!isHuman(user)) {

@@ -70,8 +70,8 @@ function void consume_reagent_and_start_grinding() {
 trigger callback(0x5A) {
 	grind_count++;
 	if (grind_count < 0x03) {
-		actionBark(alchemist, 0x22, "*You continue grinding.*", "*" + getName(alchemist) + " continues grinding.*");
-		sfx(getLocation(alchemist), 0x0242, 0x00);
+		systemMessage(alchemist, "*You continue grinding.*");
+		sfx(getLocation(alchemist), 0x42, 0x00);
 		shortCallback(this, 0x0B, 0x5A);
 		return(0x00);
 	}

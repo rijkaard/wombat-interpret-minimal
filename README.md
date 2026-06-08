@@ -10,6 +10,23 @@ unlocks the next tier.
 
 ---
 
+## Basic Usage
+
+To apply all the changed to the scripts:
+
+```
+bash ./convert-scripts.bash ../rundir-wip/scripts.wombat /tmp/uo/wip
+```
+
+You'll find:
+
+- `/tmp-uo/wip/symbols.json`: contains inheritance info on the scripts
+- `/tmp-uo/wip/renames.json`: a copy of the renames applied
+- `/tmp-uo/wip/scripts.interpreted`: scripts where all the renames have been applied
+- `/tmp-uo/wip/scripts.enum`: scripts where all the enums have also been substituted
+
+---
+
 ## Layout
 
 ```
@@ -38,6 +55,9 @@ node tools/extract-symbols.js
 # 2. Apply the rename file (merges into renames/renames.json)
 node tools/apply-renames.js renames/renames-N.json
 
+# 2b. apply the local renames
+node tools/apply-renames-local.js ...
+
 # 3. Verify correctness (round-trip against originals)
 node tools/verify-renames.js
 ```
@@ -61,6 +81,19 @@ bash tools/convert-scripts.bash <scripts-dir> <renames-file> <destination>
 7. Apply: `node tools/apply-renames.js renames/renames-N.json`
 8. Verify: `node tools/verify-renames.js && node tools/reverse-verify.js`
 9. Commit and repeat
+
+---
+
+## Enumerations
+
+```
+node tools/gen-scripts-enum.mjs \
+  --enums   ../wombat-ext/compiler/enumerations.h \
+  --annots  ../wombat-ext/compiler/enum-annotations.txt \
+  --in      ./scripts \
+  --out     ./scripts-enum
+
+```
 
 ---
 

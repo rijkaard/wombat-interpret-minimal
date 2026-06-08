@@ -4297,8 +4297,8 @@
   "escort.get_destination_display_name.Q5NW": "location_code",
   "escort.Q5I5.Q5JT": "city_codes",
   "escort.Q5I6.Q5JT": "dest_codes",
-  "escort.@speech(\"*\").Q4O5": "escort",
-  "escort.@speech(\"*\").Q58D": "msg",
+  "escort.@speech(\"*destination*\").Q4O5": "escort",
+  "escort.@speech(\"*destination*\").Q58D": "msg",
   "escort.@speech(\"I will take thee\").Q58F": "board_post",
   "escort.@speech(\"I will take thee\").Q58D": "msg",
   "escort.@callback(0x01).Q58D": "arrival_msg",
@@ -8032,5 +8032,7 @@
   "fillbookshelves.Q4JX:Q5E7": "rand_idx",
   "fillbookshelves.Q4JX:Q55X": "max_items",
   "fillbookshelves.Q4JX:Q4E5": "contents",
-  "fillbookshelves.Q4JX:Q5JX": "book_types"
+  "fillbookshelves.Q4JX:Q5JX": "book_types",
+  "fillbookshelves.Q4JX:Q4E2": "bookshelf",
+  "fillbookshelves.Q4JX:Q4Q1": "created"
 }

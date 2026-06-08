@@ -49597,9 +49597,9 @@
       "unresolved_q_calls": [],
       "is_leaf": false
     },
-    "spellai.try_cast_spell": {
-      "qualified": "spellai.try_cast_spell",
-      "name": "try_cast_spell",
+    "spellai.ai_maybe_cast_spell": {
+      "qualified": "spellai.ai_maybe_cast_spell",
+      "name": "ai_maybe_cast_spell",
       "script": "spellai",
       "kind": "function",
       "returnType": "void",
@@ -49612,9 +49612,9 @@
       "q_calls": [],
       "q_locals": [],
       "q_params": [],
-      "source": "function void try_cast_spell(obj caster) {\n  if( getNumTargets( caster) <= 0x00) { return( ); } pick_and_cast_spell( caster); return( );\n}",
+      "source": "function void ai_maybe_cast_spell(obj caster) {\n  if( getNumTargets( caster) <= 0x00) { return( ); } pick_and_cast_spell( caster); return( );\n}",
       "is_q": false,
-      "resolved_name": "try_cast_spell",
+      "resolved_name": "ai_maybe_cast_spell",
       "unresolved_q_calls": [],
       "is_leaf": false
     },
@@ -49753,7 +49753,7 @@
       "filter": "0x2D",
       "q_calls": [],
       "q_locals": [],
-      "source": "trigger callback(0x2D) {\n  try_cast_spell( this); return( 0x01);\n}",
+      "source": "trigger callback(0x2D) {\n  ai_maybe_cast_spell( this); return( 0x01);\n}",
       "is_q": false,
       "resolved_name": "callback",
       "unresolved_q_calls": [],

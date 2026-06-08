@@ -28,4 +28,9 @@ for ff in * ; do
     diff "$ff" "$DIR2/$ff" || true
 done
 
+cd "$DIR2"
+for ff in *; do
+    [[ -e "$DIR1/$ff" ]] && continue
+    echo "!! file $ff doesn't exist in $DIR1"
+done
 

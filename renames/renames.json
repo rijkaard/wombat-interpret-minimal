@@ -8025,5 +8025,12 @@
   "tailorbase.get_material_desc:Q4Q1": "rc",
   "tracking.append_direction:Q4VS": "here",
   "tutwisp.spawn_wisp:Q4VS": "spawn_loc",
-  "userisfishing.restore_pole:Q4Q1": "result"
+  "userisfishing.restore_pole:Q4Q1": "result",
+  "fillbookshelves.Q4JX": "fill_bookshelf",
+  "needsteal.Q4JZ": "needs_steal",
+  "fillbookshelves.Q4JX:Q56F": "fill_count",
+  "fillbookshelves.Q4JX:Q5E7": "rand_idx",
+  "fillbookshelves.Q4JX:Q55X": "max_items",
+  "fillbookshelves.Q4JX:Q4E5": "contents",
+  "fillbookshelves.Q4JX:Q5JX": "book_types"
 }
